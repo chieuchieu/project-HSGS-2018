@@ -102,5 +102,5 @@ int main()
     // for (llint i = 1 ; i <= capacity ; i++)
     // cout << disk[i] << " " << ((i % 10 == 0) ? "\n" : ""); cout << endl;
 
-    if (st.size() == fileCount && is_sorted(sorted.begin(), sorted.end())) cout << "Ok, correct answer!\n1.0\n";
+    if (st.size() == fileCount && is_sorted(sorted.begin(), sorted.end())) cout << "Ok, correct answer!\n1.0\n"; else cout << "Wrong answer\n0.0\n";
 }
