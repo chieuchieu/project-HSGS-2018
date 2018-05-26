@@ -4,8 +4,7 @@ using namespace std;
 typedef long long int llint;
 typedef long long int file_id;
 
-//#define cin fin
-//#define cout fout
+#define cin fin
 
 vector <file_id> disk;
 
@@ -22,8 +21,8 @@ const char copy_directive = 'K';
 
 int main()
 {
-    //fstream fin ("optdisk.inp");
-    //fstream fout ("optdisk.out");
+    fstream fin ("optdisk.inp");
+    fstream fout ("optdisk.out");
 
     llint capacity; cin >> capacity;
     llint fileCount; cin >> fileCount;
@@ -44,17 +43,19 @@ int main()
 
     // input processing done!
 
-    for (llint n = 1 ; n <= capacity ; n++)
-    cout << ((n % 10 == 1) ? to_string(n) : string ()) + " " << disk[n] << " " << ((n % 10 == 0) ? "\n" : ""); cout << endl;
+    // for (llint n = 1 ; n <= capacity ; n++)
+    // cout << ((n % 10 == 1) ? to_string(n) : string ()) + " " << disk[n] << " " << ((n % 10 == 0) ? "\n" : ""); cout << endl;
 
     // now checking answer
 
-    //llint timing = 0;
+    llint timing = 0;
     char directive; llint arg1, arg2, arg3;
-    llint iteration; cin >> iteration;
-    for (llint i = 1 ; i <= iteration ; i++)
+    llint iteration = 0;
+    while (fout >> directive >> arg1 >> arg2 >> arg3)
     {
-    	cin >> directive >> arg1 >> arg2 >> arg3;
+    	// cin >> directive >> arg1 >> arg2 >> arg3;
+    	// char directive; llint arg1, arg2, arg3;
+    	// sscanf(str.c_str(), &directive, &arg1, &arg2, &arg3);
         if (directive == copy_directive)
         {
         	vector <file_id> buffer;
@@ -64,6 +65,7 @@ int main()
 	            disk[arg1 + i - 1] = 0;
 	        }
 	        for (llint i = 1 ; i <= arg3 ; i++) disk[arg2 + i - 1] = buffer[i - 1];
+	        timing += arg3;
         }
     	if (directive == swap_directive)
     	{
@@ -71,14 +73,34 @@ int main()
     		for (llint i = 1 ; i <= arg3 ; i++) buffer.push_back(disk[arg1 + i - 1]);
     		for (llint i = 1 ; i <= arg3 ; i++) swap(buffer[i - 1], disk[arg2 + i - 1]);
     		for (llint i = 1 ; i <= arg3 ; i++) disk[arg1 + i - 1] = buffer[i - 1];
+    		timing += (arg3 << 1);
     	}
-    	cout << "Iteration " << i << endl;
-    	for (llint n = 1 ; n <= capacity ; n++)
-    	cout << ((n % 10 == 1) ? to_string(n) : string ()) + " " << disk[n] << " " << ((n % 10 == 0) ? "\n" : ""); cout << endl;
+    	// cout << "Iteration " << ++iteration << endl;
+    	// for (llint n = 1 ; n <= capacity ; n++)
+    	// cout << ((n % 10 == 1) ? to_string(n) : string ()) + " " << disk[n] << " " << ((n % 10 == 0) ? "\n" : ""); cout << endl;
+    }
+
+    bool out = true;
+    unordered_set <llint> st;
+    vector <llint> sorted;
+    for (llint i = 1 ; i <= capacity; i++)
+    {
+    	if (!disk[i])
+    	{
+    		break;
+    	}
+    	else
+    	{
+    		if (!st.count(disk[i]))
+    		{
+    			sorted.push_back(disk[i]);
+    			st.insert(disk[i]);
+    		}
+    	}
     }
 
     // for (llint i = 1 ; i <= capacity ; i++)
     // cout << disk[i] << " " << ((i % 10 == 0) ? "\n" : ""); cout << endl;
 
-
+    if (st.size() == fileCount && is_sorted(sorted.begin(), sorted.end())) cout << "Ok, correct answer!\n1.0\n";
 }
