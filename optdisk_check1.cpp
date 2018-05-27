@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// built by cipher::allies, 02:35 AM [UTC], May 27th 2018
-
 typedef long long int llint;
 typedef long long int file_id;
 
@@ -30,7 +28,8 @@ int main()
     // fstream fout ("optdisk.out");
 
     string testDirectory;
-    getline(cin, testDi;ectory);
+    getline(cin, testDirectory);
+    
     string outDirectory;
     getline(cin, outDirectory);
 
@@ -71,6 +70,9 @@ int main()
     	// fin >> directive >> arg1 >> arg2 >> arg3;
     	// char directive; llint arg1, arg2, arg3;
     	// sscanf(str.c_str(), &directive, &arg1, &arg2, &arg3);
+    	if (arg1 + arg3 - 1 > capacity || arg2 + arg3 - 1 > capacity)
+    		return (printf("Wrong answer :: Output error: Out of bounds\n0.0\n") && 0);
+
         if (directive == copy_directive)
         {
         	vector <file_id> buffer;
@@ -82,6 +84,7 @@ int main()
 	        for (llint i = 1 ; i <= arg3 ; i++) disk[arg2 + i - 1] = buffer[i - 1];
 	        timing += arg3;
         }
+        else
     	if (directive == swap_directive)
     	{
     		vector <file_id> buffer;
@@ -90,6 +93,7 @@ int main()
     		for (llint i = 1 ; i <= arg3 ; i++) disk[arg1 + i - 1] = buffer[i - 1];
     		timing += (arg3 << 1);
     	}
+    	else return (printf("Wrong answer :: Output is in invalid format\n0.0\n") && 0);
     	// cout << "Iteration " << ++iteration << endl;
     	// for (llint n = 1 ; n <= capacity ; n++)
     	// cout << ((n % 10 == 1) ? to_string(n) : string ()) + " " << disk[n] << " " << ((n % 10 == 0) ? "\n" : ""); cout << endl;
