@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// built by cipher::allies on 02:50 AM [UTC], May 27th 2018
+// built by cipher::allies on 02:55 AM [UTC], May 27th 2018
 
 typedef long long int llint;
 typedef long long int file_id;
@@ -37,7 +37,7 @@ int main()
 
     fstream fin (testDirectory + "optdisk.inp");
     fstream fout (outDirectory + "optdisk.out");
-    fstream answer (testDirectory + "optdisk.ans");
+    fstream answer (testDirectory + "optdisk.out");
 
 
     llint capacity; fin >> capacity;
