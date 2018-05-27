@@ -9,7 +9,7 @@ Công việc của bạn là tìm ra sự tồn tại của xâu S như trên. N
 
 __Chú ý: Một xâu có thể được lặp lại nhiều lần khi ghép.__
 
-## Dữ liệu đầu vào
+## Đặc tả dữ liệu đầu vào
 __Các dữ liệu đầu vào được nhập từ file__ `MATCH.IN`.
 Dòng đầu tiên của file chứa một số nguyên `N` - giới hạn:`(0 ≤ N ≤ 100)` - biểu thị số xâu trong tập hợp A.
 `N` dòng sau đó chứa các chuỗi thuộc tập hợp A, mỗi chuỗi trên một dòng.
@@ -18,7 +18,7 @@ Dòng đầu tiên của file chứa một số nguyên `M` - giới hạn:`(0 �
 `M` dòng sau đó chứa các chuỗi thuộc tập hợp A, mỗi chuỗi trên một dòng.
 __Tất cả các chuỗi đều sử dụng chữ hoa Latin và có độ dài nằm trong khoảng từ 1 đến 50.__
 
-## Dữ liệu đầu ra
+## Đặc tả dữ liệu đầu ra
 __(Các) dữ liệu đầu ra được ghi vào file `MATCH.OUT`.__
 Nếu không tồn tại xâu S thoả mãn, chương trình bắt buộc phải viết `0` trên dòng đầu tiên và duy nhất của file. 
 
