@@ -57,3 +57,4 @@ BC
 CB+ABC
 CBA+BC
 ```
+<sup><sub>dịch bởi [cipher::allies](https://github.com/minhducsun2002)</sub></sup>
