@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// built by cipher::allies, 02:35 AM [UTC], May 27th 2018
+
 typedef long long int llint;
 typedef long long int file_id;
-
-#define cin fin
 
 vector <file_id> disk;
 
@@ -16,27 +16,42 @@ inline void fill_disk (llint file_id, llint first_cluster, llint spanning_length
     }
 }
 
+inline void doNothing()
+{
+	return;
+}
+
 const char swap_directive = 'Z';
 const char copy_directive = 'K';
 
 int main()
 {
-    fstream fin ("optdisk.inp");
-    fstream fout ("optdisk.out");
+    // fstream fin ("optdisk.inp");
+    // fstream fout ("optdisk.out");
 
-    llint capacity; cin >> capacity;
-    llint fileCount; cin >> fileCount;
+    string testDirectory;
+    getline(cin, testDi;ectory);
+    string outDirectory;
+    getline(cin, outDirectory);
+
+    fstream fin (testDirectory + "optdisk.inp");
+    fstream fout (outDirectory + "optdisk.out");
+    fstream answer (testDirectory + "optdisk.ans");
+
+
+    llint capacity; fin >> capacity;
+    llint fileCount; fin >> fileCount;
 
     disk.resize(capacity + 1);
 
     for (llint i = 1 ; i <= fileCount ; i++)
     {
-        llint id, fragmentCount; cin >> id >> fragmentCount;
+        llint id, fragmentCount; fin >> id >> fragmentCount;
         
         for (llint i = 1 ; i <= fragmentCount ; i++)
         {
             llint first_cluster, spanning_length;
-            cin >> first_cluster >> spanning_length;
+            fin >> first_cluster >> spanning_length;
             fill_disk(id, first_cluster, spanning_length);
         };
     }
@@ -53,7 +68,7 @@ int main()
     llint iteration = 0;
     while (fout >> directive >> arg1 >> arg2 >> arg3)
     {
-    	// cin >> directive >> arg1 >> arg2 >> arg3;
+    	// fin >> directive >> arg1 >> arg2 >> arg3;
     	// char directive; llint arg1, arg2, arg3;
     	// sscanf(str.c_str(), &directive, &arg1, &arg2, &arg3);
         if (directive == copy_directive)
@@ -102,5 +117,26 @@ int main()
     // for (llint i = 1 ; i <= capacity ; i++)
     // cout << disk[i] << " " << ((i % 10 == 0) ? "\n" : ""); cout << endl;
 
-    if (st.size() == fileCount && is_sorted(sorted.begin(), sorted.end())) cout << "Ok, correct answer!\n1.0\n"; else cout << "Wrong answer\n0.0\n";
+    if (st.size() == fileCount && is_sorted(sorted.begin(), sorted.end())) 
+    	doNothing();
+    else 
+    	return (printf("Wrong answer :: Disk is not optimal\n0.0\n") && 0);
+
+    // checking answer from judge's answer
+
+    char ans_directive; llint aarg1, aarg2, aarg3;
+
+    // reset contestant's answer stream
+    // fout.close();
+    // fout.open(outDirectory + "optdisk.out");
+
+    llint ans_timing = 0;
+    while (answer >> ans_directive >> aarg1 >> aarg2 >> aarg3)
+    {
+    	if (ans_directive == copy_directive) ans_timing += aarg3;
+    	if (ans_directive == swap_directive) ans_timing += (aarg3 << 1);
+    }
+
+    if (ans_timing == timing) cout << "Ok, right answer!\n1.0\n";
+    else cout << "Wrong answer :: Total execution time is not optimal\n0.0\n";
 }
